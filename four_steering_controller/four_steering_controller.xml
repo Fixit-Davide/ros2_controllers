@@ -1,0 +1,8 @@
+<library path="four_steering_controller">
+  <class name="four_steering_controller/FourSteeringController"
+         type="four_steering_controller::FourSteeringController" base_class_type="controller_interface::ChainableControllerInterface">
+  <description>
+    Steering controller for 4-WS kinematics with four traction and four steering joints.
+  </description>
+  </class>
+</library>
