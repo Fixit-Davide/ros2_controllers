@@ -36,6 +36,7 @@
 
 // TODO(anyone): Replace with controller specific messages
 #include "ackermann_msgs/msg/ackermann_drive_stamped.hpp"
+#include "four_wheel_steering_msgs/msg/four_wheel_steering_stamped.hpp"
 #include "control_msgs/msg/steering_controller_status.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 #include "geometry_msgs/msg/twist_stamped.hpp"
@@ -83,6 +84,7 @@ public:
   update_and_write_commands(const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
   using ControllerAckermannReferenceMsg = ackermann_msgs::msg::AckermannDriveStamped;
+  using ControllerFourSteeringReferenceMsg = four_wheel_steering_msgs::msg::FourWheelSteeringStamped;
   using ControllerTwistReferenceMsg = geometry_msgs::msg::TwistStamped;
   using ControllerStateMsgOdom = nav_msgs::msg::Odometry;
   using ControllerStateMsgTf = tf2_msgs::msg::TFMessage;

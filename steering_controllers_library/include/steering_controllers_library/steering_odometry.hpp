@@ -31,6 +31,7 @@ namespace steering_odometry
 const unsigned int BICYCLE_CONFIG = 0;
 const unsigned int TRICYCLE_CONFIG = 1;
 const unsigned int ACKERMANN_CONFIG = 2;
+const unsigned int FOUR_STEERING_CONFIG = 3;
 /**
  * \brief The Odometry class handles odometry readings
  * (2D pose and velocity with related timestamp)
