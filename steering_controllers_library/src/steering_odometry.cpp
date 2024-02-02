@@ -276,6 +276,46 @@ std::tuple<std::vector<double>, std::vector<double>> SteeringOdometry::get_comma
     }
     return std::make_tuple(traction_commands, steering_commands);
   }
+  else if (config_type == FOUR_WHEEL_CONFIG)
+  {
+    std::vector<double> traction_commands;
+    std::vector<double> steering_commands;
+    if (fabs(steer_pos_) < 1e-6) {
+      traction_commands = {Ws, Ws, Ws, Ws};
+      steering_commands = {alpha, alpha, alpha, alpha};
+    } else {
+      double steering_track_ = wheel_track_ - 2 * wheel_steering_y_offset_;
+      double vel_steering_offset = (theta_dot * wheel_steering_y_offset_) / wheel_radius_;
+      double sign = copysign(1.0, twist.linear.x);
+      /* Wheels velocities */
+      Ws_lf  = sign * std::hypot((Vx - theta_dot * steering_track * 0.5),
+                                          (wheel_base_ * theta_dot * 0.5)) / wheel_radius_
+                        - vel_steering_offset;
+      Ws_rf = sign * std::hypot((Vx + theta_dot * steering_track * 0.5),
+                                          (wheel_base_ * theta_dot * 0.5)) / wheel_radius_
+                        + vel_steering_offset;
+      Ws_lr = sign * std::hypot((Vx - theta_dot * steering_track * 0.5),
+                                        (wheel_base_ * theta_dot * 0.5)) / wheel_radius_
+                      - vel_steering_offset;
+      Ws_rr = sign * std::hypot((Vx + theta_dot * steering_track * 0.5),
+                                          (wheel_base_ * theta_dot * 0.5)) / wheel_radius_
+                        + vel_steering_offset;
+      traction_commands = {Ws_lf, Ws_rf, Ws_lr, Ws_rr};
+      /* Steering angles */
+      if(fabs(2.0 * Vx) > fabs(theta_dot * steering_track)) {
+        alpha_fl = atan(theta_dot * wheel_base_ /
+                                    (2.0 * Vx - theta_dot * steering_track));
+        alpha_fr = atan(theta_dot * wheel_base_ /
+                                      (2.0 * Vx + theta_dot * steering_track));
+      }
+      else if(fabs(Vx) > 0.001) {
+        alpha_fl = copysign(M_PI_2, theta_dot);
+        alpha_fr = copysign(M_PI_2, theta_dot);
+      }
+      steering_commands = {alpha_fl, alpha_fr, -alpha_fl, -alpha_fr};
+    }
+    return std::make_tuple(traction_commands, steering_commands);
+  }
   else
   {
     throw std::runtime_error("Config not implemented");

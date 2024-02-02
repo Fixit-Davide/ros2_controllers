@@ -1,4 +1,4 @@
-// Copyright (c) 2023, Stogl Robotics Consulting UG (haftungsbeschränkt)
+Could not load library dlopen error: libignition-math6.so.6:// Copyright (c) 2023, Stogl Robotics Consulting UG (haftungsbeschränkt)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,12 @@ namespace steering_odometry
 const unsigned int BICYCLE_CONFIG = 0;
 const unsigned int TRICYCLE_CONFIG = 1;
 const unsigned int ACKERMANN_CONFIG = 2;
+<<<<<<< HEAD
 const unsigned int FOUR_STEERING_CONFIG = 3;
+=======
+const unsigned int DOUBLE_ACKERMANN_CONFIG = 3;
+const unsigned int FOUR_WHEELS_CONFIG = 4;
+>>>>>>> 0a548548517fabce0b80993bd34910bfe2801c7d
 /**
  * \brief The Odometry class handles odometry readings
  * (2D pose and velocity with related timestamp)

@@ -12,6 +12,13 @@ steering_controllers_library:
     read_only: true,
   }
 
+  all_steering: {
+    type: bool,
+    default_value: true,
+    description: "It is a 4-wheel steering robot?",
+    read_only: true,
+  }
+
   rear_wheels_names: {
     type: string_array,
     description: "Names of rear wheel joints.",
