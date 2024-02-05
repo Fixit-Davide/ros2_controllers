@@ -1,13 +1,5 @@
 ackermann_steering_controller:
-  front_wheel_track:
-    {
-      type: double,
-      default_value: 0.0,
-      description: "Front wheel track length. For details see: https://en.wikipedia.org/wiki/Wheelbase",
-      read_only: false,
-    }
-
-  rear_wheel_track:
+  wheel_track:
     {
       type: double,
       default_value: 0.0,
@@ -15,7 +7,7 @@ ackermann_steering_controller:
       read_only: false,
     }
 
-  wheelbase:
+  wheel_base:
     {
       type: double,
       default_value: 0.0,
@@ -23,18 +15,18 @@ ackermann_steering_controller:
       read_only: false,
     }
 
-  front_wheels_radius:
+  wheel_y_offset:
+    {
+      type: double,
+      default_value: 0.0,
+      description: "Offset between steer and wheel joints. For details see: https://en.wikipedia.org/wiki/Wheelbase",
+      read_only: false,
+    }
+
+  wheels_radius:
     {
       type: double,
       default_value: 0.0,
       description: "Front wheels radius.",
-      read_only: false,
-    }
-
-  rear_wheels_radius:
-    {
-      type: double,
-      default_value: 0.0,
-      description: "Rear wheels radius.",
       read_only: false,
     }

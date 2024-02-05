@@ -247,7 +247,7 @@ private:
   double wheel_track_;   // [m]
   double wheelbase_;     // [m]
   double wheel_radius_;  // [m]
-
+  double wheel_steering_y_offset_;  // [m]
   /// Configuration type used for the forward kinematics
   int config_type_ = -1;
 

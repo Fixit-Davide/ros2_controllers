@@ -19,6 +19,28 @@ steering_controllers_library:
     read_only: true,
   }
 
+  steers_names: {
+    type: string_array,
+    description: "Names of steer joints.",
+    read_only: true,
+    validation: {
+      size_lt<>: [5],
+      unique<>: null,
+      not_empty<>: null,
+    }
+  }
+
+  wheels_names: {
+    type: string_array,
+    description: "Names of wheel joints.",
+    read_only: true,
+    validation: {
+      size_lt<>: [5],
+      unique<>: null,
+      not_empty<>: null,
+    }
+  }
+
   rear_wheels_names: {
     type: string_array,
     description: "Names of rear wheel joints.",

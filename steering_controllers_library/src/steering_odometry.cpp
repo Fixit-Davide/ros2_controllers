@@ -34,6 +34,7 @@ SteeringOdometry::SteeringOdometry(size_t velocity_rolling_window_size)
   wheel_track_(0.0),
   wheelbase_(0.0),
   wheel_radius_(0.0),
+  wheel_steering_y_offset_(0.0),
   traction_wheel_old_pos_(0.0),
   velocity_rolling_window_size_(velocity_rolling_window_size),
   linear_acc_(velocity_rolling_window_size),
@@ -283,7 +284,9 @@ std::tuple<std::vector<double>, std::vector<double>> SteeringOdometry::get_comma
     if (fabs(steer_pos_) < 1e-6) {
       traction_commands = {Ws, Ws, Ws, Ws};
       steering_commands = {alpha, alpha, alpha, alpha};
-    } else {
+    }
+    else
+    {
       double steering_track_ = wheel_track_ - 2 * wheel_steering_y_offset_;
       double vel_steering_offset = (theta_dot * wheel_steering_y_offset_) / wheel_radius_;
       double sign = copysign(1.0, twist.linear.x);

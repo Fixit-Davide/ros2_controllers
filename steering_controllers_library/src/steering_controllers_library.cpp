@@ -335,7 +335,6 @@ SteeringControllersLibrary::state_interface_configuration() const
   const auto traction_wheels_feedback = params_.position_feedback
                                           ? hardware_interface::HW_IF_POSITION
                                           : hardware_interface::HW_IF_VELOCITY;
-<<<<<<< HEAD
   if (params_.all_steering) {
     for (size_t i = 0; i < params_.wheels_names.size(); ++i) {
       state_interfaces_config.names.push_back(
